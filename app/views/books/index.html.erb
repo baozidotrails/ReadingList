@@ -18,9 +18,54 @@
           </div>
         </form>
       </p>
-      <!--<p class='pull-right'>
+      <p class='pull-right'>
         <a href='#' id='show-form' class='btn btn-primary'>New Book Form</a>
-      </p>-->
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_for Book.new, remote: true, class: 'form-horizontal' do |f| %>
+        <div class="col-xs-4">
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :author, class: 'form-control', placeholder: 'Author' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 10 %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :amazon_id, class: 'form-control', placeholder: 'Amazon ID' %>
+          </div>
+
+          <div class="form-group">
+            Genre: <br>
+            <%= f.collection_check_boxes :genre_ids, Genre.order(:name), :id, :name do |item| %>
+              <label class="checkbox-inline">
+                <%= item.check_box %> <%= item.label %>
+              </label>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            Rating: <br>
+            <% (1..5).each do |rating| %>
+              <%= f.radio_button :rating, rating %>
+              <%= label :rating, rating %>&nbsp;&nbsp;
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'New book', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -28,7 +73,7 @@
 
   <div class="row">
     <div class="col-sm-8">
-      <ul class="list-unstyled">
+      <ul class="list-unstyled book-list">
 
         <%= render @books %>
 
