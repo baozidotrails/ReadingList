@@ -45,7 +45,12 @@
             <%= f.text_field :amazon_id, class: 'form-control', placeholder: 'Amazon ID' %>
           </div>
 
-
+          <div class="form-group">
+            Genre: <br>
+            <%= f.collection_check_boxes :genre_ids, Genre.order(:name), :id, :name do |genre| %>
+              <%= genre.check_box %>&nbsp;<%= genre.label %>
+            <% end %>
+          </div>
 
           <div class="form-group">
             Rating: <br>
