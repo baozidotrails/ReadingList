@@ -1,1 +1,10 @@
-$('.book-list').prepend('<%= j render @book %>')
+$('.book-list').prepend('<%= j render @book %>');
+
+$('.current_book').css({
+  'background-color': '#f4ffd8'
+}).animate({
+  'background-color': '#fff'
+}, 500)
+
+$('.new_book')[0].reset();
+$('.new_book').slideUp();

@@ -1,3 +1,4 @@
+<div class="loading"><h1>Loading...</h1></div>
 <div class="container">
 
   <h1>Reading List</h1>
@@ -19,13 +20,13 @@
         </form>
       </p>
       <p class='pull-right'>
-        <a href='#' id='show-form' class='btn btn-primary'>New Book Form</a>
+        <a href='#' id='show-form' class='btn btn-primary new-book-btn'>New Book Form</a>
       </p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 new-book-form">
       <%= form_for Book.new, remote: true, class: 'form-horizontal' do |f| %>
         <div class="col-xs-4">
           <div class="form-group">
@@ -44,14 +45,7 @@
             <%= f.text_field :amazon_id, class: 'form-control', placeholder: 'Amazon ID' %>
           </div>
 
-          <div class="form-group">
-            Genre: <br>
-            <%= f.collection_check_boxes :genre_ids, Genre.order(:name), :id, :name do |item| %>
-              <label class="checkbox-inline">
-                <%= item.check_box %> <%= item.label %>
-              </label>
-            <% end %>
-          </div>
+
 
           <div class="form-group">
             Rating: <br>
